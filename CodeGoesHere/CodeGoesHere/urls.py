@@ -15,13 +15,14 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from django.contrib.auth import views as auth_views
 from Budgeter import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^SpendingAnalysis/', include('SpendingAnalysis.urls')),
     url(r'^$', views.index),
-    url(r'^login/$', 'django.contrib.auth.views.login'),
-    url(r'^logout/$', 'django.contrib.auth.views.logout'),
+    url(r'^login/$', auth_views.login),
+    url(r'^logout/$', auth_views.logout),
 
 ]
