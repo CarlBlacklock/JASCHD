@@ -37,4 +37,9 @@ def transactionCatagorization(user_id, monthToCatagorize):
 		catagorized_spending[entry] = Decimal(0.00)
 
 	user_transactions = model.Transaction.objects.filter(user_id)
-	
+
+	for entry in user_transactions:
+		catagory = model.TransactionCatagories.objects.filter(entry[merchant_name])
+		catagorized_spending[merchant_name] = Decimal(catagorized_spending[merchant_name]) + Decimal(user_transactions[transaction_amount])
+
+	return catagorized_spending

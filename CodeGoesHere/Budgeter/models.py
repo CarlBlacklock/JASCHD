@@ -6,7 +6,7 @@ class Client(models.Model):
 	#to be filled in
 	def __str__(self):
 		return self.user_id
-	user_id = models.OneToOneField(User, on_delete=models.CASCADE)
+	user_id = models.OneToOneField(User, on_delete=models.CASCADE, default = 1)
 	user_bank_name = models.TextField()
 
 class Transaction(models.Model):
