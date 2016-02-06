@@ -16,10 +16,8 @@ class Transaction(models.Model):
 		return self.merchant_name
 	TRANSACTION_TYPE_CHOICES = ()
 	transaction_date = models.DateField()
-	transaction_type = models.TextField()
 	merchant_name = models.TextField(default = 'Unknown')
 	transaction_amount = models.DecimalField(max_digits = 12, decimal_places = 2, default = 0.00)
-	user_id = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
 class TransactionCatagories(models.Model):
