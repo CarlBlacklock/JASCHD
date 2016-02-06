@@ -9,6 +9,7 @@ class User(models.Model):
 	user_bank_name = models.TextField()
 
 class Transaction(models.Model):
+	TRANSACTION_TYPE_CHOICES = ()
 	transaction_date = models.DateField()
 	transaction_type = models.
 
