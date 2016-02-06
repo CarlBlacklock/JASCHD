@@ -12,7 +12,7 @@ def getTransactionsFromFile(path_to_file):
 		rawTransactions.append(row)
 	return rawTransactions
 
-def transactionFormatAndSave(rawTransactions):
+def transactionFormatAndSave(rawTransactions, user_id):
 	for row in rawTransactions:
 		dateString = row['DATE']
 		tokenizedString = dateString.split('/')
@@ -27,6 +27,14 @@ def transactionFormatAndSave(rawTransactions):
 			formatedMonth = tokenizedString[0]
 		formatedDate = tokenizedString[2]+'-'+formatedMonth+'-'+formatedDay
 		if row['DEBIT'] != '':
-			newTransaction = model.Transaction(transaction_date = formatedDate, merchant_name = row['TRANSACTION DETAILS'], transaction_amount = Decimal(row['DEBIT']))
+			newTransaction = model.Transaction(transaction_date = formatedDate, merchant_name = row['TRANSACTION DETAILS'], transaction_amount = Decimal(row['DEBIT']), user_id = user_id)
 			newTransaction.save(force_insert = True)
 
+def transactionCatagorization(user_id, monthToCatagorize):
+	all_catagories = model.TransactionCatagories.objects.all()
+	catagorized_spending = {}
+	for entry in all_catagories:
+		catagorized_spending[entry] = Decimal(0.00)
+
+	user_transactions = model.Transaction.objects.filter(user_id)
+	

@@ -1,20 +1,19 @@
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
-
+from django.contrib.auth.models import User
 # Create your models here.
 
-class User(models.Model):
+class Client(models.Model):
 	#to be filled in
 	def __str__(self):
-		return self.user_name
-	user_id = models.EmailField(max_length = 254, primary_key = True)
-	user_name = models.TextField()
+		return self.user_id
+	user_id = models.OneToOneField(User, on_delete=models.CASCADE)
 	user_bank_name = models.TextField()
 
 class Transaction(models.Model):
 	def __str__(self):
 		return self.merchant_name
 	TRANSACTION_TYPE_CHOICES = ()
+	user_id = models.ForeignKey(Client, on_delete=models.CASCADE)
 	transaction_date = models.DateField()
 	merchant_name = models.TextField(default = 'Unknown')
 	transaction_amount = models.DecimalField(max_digits = 12, decimal_places = 2, default = 0.00)
