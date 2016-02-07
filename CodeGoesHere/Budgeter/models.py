@@ -14,7 +14,7 @@ class Transaction(models.Model):
 	def __str__(self):
 		return self.merchant_name
 	TRANSACTION_TYPE_CHOICES = ()
-	user_id = models.ForeignKey(Client, on_delete=models.CASCADE)
+	user_name = models.TextField()
 	transaction_date = models.DateField()
 	merchant_name = models.TextField(default = 'Unknown')
 	transaction_amount = models.DecimalField(max_digits = 12, decimal_places = 2, default = 0.00)

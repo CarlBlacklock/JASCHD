@@ -2,6 +2,13 @@ from django.shortcuts import render
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponseRedirect
+from Budgeter import models
+from django.contrib.auth.models import User
+
+class UserDataForm(forms.Form):
+    #income = forms.DecimalForms()
+    transactions = forms.FileField()
+
 
 # Create your views here.
 def index(request):
@@ -20,4 +27,21 @@ def register(request):
         'form': form,
     })
 
-def 
+def importUserData(request):
+    if request.user.is_authenticated():
+        if request.method == 'POST':
+            username = request.user.get_username()
+            form = UserDataForm(request.POST, request.FILES)
+            if form.is_valid():
+                handle_uploaded_file(request.FILES['transactions'])
+                return HttpResponseRedirect("/spendingAnalysis")
+        else:
+            form = UserDataForm()
+        return render(request, 'useranalysis.html', {'form': form})
+    else:
+        return HttpResponseRedirect("/login")
+
+def handle_uploaded_file(file):
+    with open('..\\..\\Userdata\\newFile', 'wb+') as destination:
+        for chunk in file.chunks():
+            destination.write(chunk)
