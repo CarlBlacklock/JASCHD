@@ -37,12 +37,7 @@ def importUserData(request):
         if request.method == 'POST':
             username = request.user.get_username()
             form = UserDataForm(request.FILES)
-            f2 = open(request.POST['transactions'], 'r')
-            
-            raw_transactions = h.getTransactionsFromFile(f2.read())
-            f.close()
-            h.transactionFormatAndSave(raw_transactions, username)
-            return HttpResponse("/spendingAnalysis")
+            return HttpResponseRedirect("/savings")
         else:
             form = UserDataForm()
         return render(request, 'useranalysis.html', {'form': form})

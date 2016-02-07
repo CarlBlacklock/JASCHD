@@ -27,6 +27,5 @@ urlpatterns = [
     url(r'^logout/$', auth_views.logout),
     url(r'^register/$', views.register),
     url(r'^useranalysis/$', views.importUserData),
-    url(r'^spendanalysis/$', s_views.index),
-	url(r'^savings/$', sa_views.index)
+	url(r'^savings/$', sa_views.index),
 ]
