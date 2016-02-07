@@ -10,6 +10,10 @@ class UserDataForm(forms.Form):
     transactions = forms.FileField()
 
 
+class UserDataForm(forms.Form):
+    #income = forms.DecimalForms()
+    transactions = forms.FileField()
+
 # Create your views here.
 def index(request):
 	context = {}
@@ -44,4 +48,8 @@ def importUserData(request):
 def handle_uploaded_file(file):
     with open('..\\..\\Userdata\\newFile', 'wb+') as destination:
         for chunk in file.chunks():
+<<<<<<< HEAD
             destination.write(chunk)
+=======
+            destination.write(chunk)
+>>>>>>> origin/master
