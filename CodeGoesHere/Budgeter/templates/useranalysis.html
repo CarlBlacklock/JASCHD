@@ -14,14 +14,13 @@
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
 		<!--[if lte IE 8]><script src="js/html5shiv.js"></script><![endif]-->
-		<script src="js/skel.min.js"></script>
-		<script src="js/skel-layers.min.js"></script>
-		<script src="js/init.js"></script>
-		<noscript>
-			<link rel="stylesheet" href="css/skel.css" />
-			<link rel="stylesheet" href="css/style.css" />
-			<link rel="stylesheet" href="css/style-xlarge.css" />
-		</noscript>
+		<script src="{% static 'js/jquery.min.js' %}"></script>
+		<script src="{% static 'js/skel.min.js' %}"></script>
+		<script src="{% static 'js/skel-layers.min.js' %}"></script>
+		<script src="{% static 'js/init.js' %}"></script>
+		<link rel="stylesheet" href="{% static 'css/skel.css' %}" />
+		<link rel="stylesheet" href="{% static 'css/style.css' %}" />
+		<link rel="stylesheet" href="{% static 'css/style-xlarge.css' %}" />
 	</head>
 	<body>
 
@@ -39,11 +38,11 @@
 				<div class="container">
 
 					<header class="major">
-						<h2>Transaction History</h2>
+						<h2>Please Upload Your Transaction History</h2>
 					</header>
 					<form action="" method="post">
     				{% csrf_token %}
-    				{{ form.as_p }}
+    				{{form}}
     				<input type="submit" value="Upload data" />
 					</form>
 				</div>
