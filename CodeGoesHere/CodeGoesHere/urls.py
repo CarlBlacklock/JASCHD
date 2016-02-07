@@ -28,5 +28,5 @@ urlpatterns = [
     url(r'^register/$', views.register),
     url(r'^userdata/$', views.importUserData),
     url(r'^spendanalysis/$', s_views.index),
-	url(r'^savings/$', sa_views)
+	url(r'^savings/$', sa_views.index)
 ]
