@@ -42,7 +42,7 @@ def importUserData(request):
             raw_transactions = h.getTransactionsFromFile(f2.read())
             f.close()
             h.transactionFormatAndSave(raw_transactions, username)
-            return HttpResponseRedirect("/spendingAnalysis")
+            return HttpResponse("/spendingAnalysis")
         else:
             form = UserDataForm()
         return render(request, 'useranalysis.html', {'form': form})
