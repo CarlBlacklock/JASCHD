@@ -20,9 +20,9 @@ from Budgeter import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^SpendingAnalysis/', include('SpendingAnalysis.urls')),
     url(r'^$', views.index),
     url(r'^login/$', auth_views.login),
     url(r'^logout/$', auth_views.logout),
     url(r'^register/$', views.register),
+    url(r'^userdata/$', views.importUserData),
 ]
