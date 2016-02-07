@@ -16,6 +16,7 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
+from SpendingAnalysis import views as s_views
 from Budgeter import views
 
 urlpatterns = [
@@ -25,4 +26,5 @@ urlpatterns = [
     url(r'^logout/$', auth_views.logout),
     url(r'^register/$', views.register),
     url(r'^userdata/$', views.importUserData),
+    url(r'^spendanalysis/$', s_views)
 ]
