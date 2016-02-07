@@ -36,8 +36,11 @@ def importUserData(request):
     if request.user.is_authenticated():
         if request.method == 'POST':
             username = request.user.get_username()
-            form = UserDataForm(request.POST, request.FILES)
-            raw_transactions = h.getTransactionsFromFile(request.FILES)
+            form = UserDataForm(request.FILES)
+            f2 = open(request.POST['transactions'], 'r')
+            
+            raw_transactions = h.getTransactionsFromFile(f2.read())
+            f.close()
             h.transactionFormatAndSave(raw_transactions, username)
             return HttpResponseRedirect("/spendingAnalysis")
         else:
