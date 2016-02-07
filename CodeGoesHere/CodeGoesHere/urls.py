@@ -26,7 +26,7 @@ urlpatterns = [
     url(r'^login/$', auth_views.login),
     url(r'^logout/$', auth_views.logout),
     url(r'^register/$', views.register),
-    url(r'^userdata/$', views.importUserData),
+    url(r'^useranalysis/$', views.importUserAnalysis),
     url(r'^spendanalysis/$', s_views.index),
 	url(r'^savings/$', sa_views.index)
 ]
