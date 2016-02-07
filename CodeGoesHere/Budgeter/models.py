@@ -8,6 +8,7 @@ class Client(models.Model):
 		return self.user_id
 	user_id = models.OneToOneField(User, on_delete=models.CASCADE, default = 1)
 	user_bank_name = models.TextField()
+	user_estimated_income = models.DecimalField(max_digits = 12, decimal_places = 2, default = 0.00)
 
 class Transaction(models.Model):
 	def __str__(self):
