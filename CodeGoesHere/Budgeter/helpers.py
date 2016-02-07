@@ -27,7 +27,7 @@ def transactionFormatAndSave(rawTransactions, user_id):
 			formatedMonth = tokenizedString[0]
 		formatedDate = tokenizedString[2]+'-'+formatedMonth+'-'+formatedDay
 		if row['DEBIT'] != '':
-			newTransaction = model.Transaction(transaction_date = formatedDate, merchant_name = row['TRANSACTION DETAILS'], transaction_amount = Decimal(row['DEBIT']), user_id = user_id)
+			newTransaction = model.Transaction(transaction_date = formatedDate, merchant_name = row['TRANSACTION DETAILS'], transaction_amount = Decimal(row['DEBIT']), user_name = user_id)
 			newTransaction.save(force_insert = True)
 
 def transactionCatagorization(user_id, monthToCatagorize):

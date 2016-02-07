@@ -4,6 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponseRedirect
 from Budgeter import models
 from django.contrib.auth.models import User
+import Budgeter.helpers as h
 
 class UserDataForm(forms.Form):
     #income = forms.DecimalForms()
@@ -37,19 +38,11 @@ def importUserData(request):
             username = request.user.get_username()
             form = UserDataForm(request.POST, request.FILES)
             if form.is_valid():
-                handle_uploaded_file(request.FILES['transactions'])
+                raw_transactions = h.getTransactionsFromFile(request.FILES)
+                h.transactionFormatAndSave(raw_transactions, username)
                 return HttpResponseRedirect("/spendingAnalysis")
         else:
             form = UserDataForm()
         return render(request, 'useranalysis.html', {'form': form})
     else:
         return HttpResponseRedirect("/login")
-
-def handle_uploaded_file(file):
-    with open('..\\..\\Userdata\\newFile', 'wb+') as destination:
-        for chunk in file.chunks():
-<<<<<<< HEAD
-            destination.write(chunk)
-=======
-            destination.write(chunk)
->>>>>>> origin/master
