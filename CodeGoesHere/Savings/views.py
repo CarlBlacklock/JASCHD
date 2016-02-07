@@ -7,4 +7,4 @@ from Budgeter import helpers
 
 
 def index(request):
-	return render(request, '.\Budgeter\'templates\useranalysis.html')
+	return render(request,'useranalysis.html')
