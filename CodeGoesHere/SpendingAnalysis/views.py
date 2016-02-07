@@ -5,15 +5,10 @@ from django.http import HttpResponse
 
 from Budgeter import helpers
 
-#have to change the passed parameters
-from_database = helpers.transactionCatagorization(1, 1)
-
-#food = from_database[0]
-#ent = from_database[1]
-#elec = from_database[2]
-#oFood = from_database[3]
-#clo = from_database[4]
-#tra = from_database[5]
 
 def index(request):
-	return render(request, '.\Budgeter\'templates\useranalysis.html')
+	#have to change the passed parameters
+	fromData = helpers.transactionCatagorization(request.user.get_username(), 1)
+
+	#return render_to_response('.\Budgeter\'templates\spendanalysis.html', fromData)
+	return render(request, "spendanalysis.html", fromData)
